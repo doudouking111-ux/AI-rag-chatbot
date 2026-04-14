@@ -2,12 +2,13 @@
 
 import os, fitz, docx
 from dotenv import load_dotenv
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_community.vectorstores import FAISS
-from langchain.chains import ConversationalRetrievalChain
-from langchain.memory import ConversationBufferWindowMemory
-from langchain.schema import Document
+from langchain_classic.chains import ConversationalRetrievalChain
+from langchain_community.chat_message_histories import ChatMessageHistory
+from langchain_classic.memory import ConversationBufferWindowMemory
+from langchain_core.documents import Document
 
 load_dotenv()
 
