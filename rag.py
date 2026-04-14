@@ -11,6 +11,14 @@ from langchain.schema import Document
 
 load_dotenv()
 
+# Streamlit Cloud secrets 兼容：优先用 st.secrets，fallback 到 .env
+try:
+    import streamlit as st
+    os.environ.setdefault("OPENAI_API_KEY", st.secrets.get("OPENAI_API_KEY", ""))
+    os.environ.setdefault("OPENAI_BASE_URL", st.secrets.get("OPENAI_BASE_URL", ""))
+except Exception:
+    pass
+
 
 def parse_file(uploaded_file) -> list[Document]:
     """解析 PDF/Word，返回 Document 列表（保留来源元数据）"""
