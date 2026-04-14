@@ -1,5 +1,9 @@
 # AI Demo Projects
 
+> **This is a public demo template for learning and testing purposes.**
+> For commercial customization, deployment to your server, or custom feature development, feel free to [contact me on Freelancer](https://www.freelancer.com/u/Edward6666?frm=Edward6666&sb=t).
+> I offer full delivery + 1 month of free technical support.
+
 Four demo projects showcasing practical LLM applications: RAG document Q&A, AI customer service chatbot, AI-powered workflow automation, and structured document extraction.
 
 ## Project 1: RAG Document Q&A
