@@ -1,6 +1,6 @@
 # AI Demo Projects
 
-Two demo projects showcasing practical LLM applications: a RAG document Q&A system and an AI-powered customer service chatbot.
+Three demo projects showcasing practical LLM applications: RAG document Q&A, AI customer service chatbot, and AI-powered workflow automation.
 
 ## Project 1: RAG Document Q&A
 
@@ -82,9 +82,55 @@ python app.py
 
 ---
 
+## Project 3: AI Invoice Processing Workflow
+
+Upload invoice PDFs — AI extracts structured data (vendor, items, amounts) → saves to spreadsheet → sends notification. Simulates a full automation pipeline.
+
+### Architecture
+
+```
+Upload PDF → Parse Text (PyMuPDF)
+           → AI Extraction (GPT-4o-mini → structured JSON)
+           → Save to CSV (simulates Google Sheets)
+           → Send Notification (simulates Slack Webhook)
+           → Streamlit UI displays each step + history
+```
+
+### Features
+
+- PDF text extraction with PyMuPDF
+- LLM-powered structured data extraction (invoice number, vendor, line items, amounts)
+- CSV storage with append mode (simulates Google Sheets API)
+- Notification simulation (simulates Slack Webhook)
+- Processing history dashboard
+- Sample invoice PDF included for demo
+
+### Files
+
+| File | Description |
+|------|-------------|
+| `ai_workflow/app.py` | Streamlit web UI — upload, process, display results |
+| `ai_workflow/pipeline.py` | Core pipeline: parse → extract → store → notify |
+| `ai_workflow/extractor.py` | OpenAI structured extraction (returns JSON) |
+| `ai_workflow/storage.py` | CSV storage (simulates Google Sheets) |
+| `ai_workflow/notifier.py` | Notification (simulates Slack Webhook) |
+| `ai_workflow/config.py` | Environment variable loader |
+| `ai_workflow/sample_invoices/` | Sample invoice PDF for demo |
+
+### Usage
+
+```bash
+cd ai_workflow
+pip install -r requirements.txt
+# Edit .env with your OpenAI API key
+streamlit run app.py
+```
+
+---
+
 ## Configuration
 
-Both projects read from `.env`:
+All projects read from `.env`:
 
 ```env
 OPENAI_API_KEY=your-api-key
@@ -96,3 +142,4 @@ OPENAI_BASE_URL=https://api.openai.com/v1
 - Python, LangChain, OpenAI API (GPT-4o-mini)
 - Project 1: Streamlit, FAISS, PyMuPDF, python-docx
 - Project 2: Gradio, LangChain Tool Calling
+- Project 3: Streamlit, PyMuPDF, LangChain structured extraction

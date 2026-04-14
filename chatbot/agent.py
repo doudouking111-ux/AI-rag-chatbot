@@ -26,7 +26,7 @@ prompt = ChatPromptTemplate.from_messages([
 agent = create_tool_calling_agent(llm, TOOLS, prompt)
 agent_executor = AgentExecutor(agent=agent, tools=TOOLS)
 
-# 多轮对话：按 session_id 维护独立历史
+# Multi-turn conversation: maintain separate history per session_id
 _histories: dict[str, InMemoryChatMessageHistory] = {}
 
 
@@ -53,9 +53,9 @@ def chat(message: str, session_id: str = "default") -> str:
 
 
 if __name__ == "__main__":
-    print("悠然咖啡客服（输入 quit 退出）")
+    print("Youran Coffee Customer Service (type 'quit' to exit)")
     while True:
-        user_input = input("\n你: ")
+        user_input = input("\nYou: ")
         if user_input.strip().lower() == "quit":
             break
-        print(f"客服: {chat(user_input)}")
+        print(f"Agent: {chat(user_input)}")

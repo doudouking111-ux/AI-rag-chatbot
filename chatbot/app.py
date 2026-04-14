@@ -3,15 +3,14 @@ from agent import chat
 
 
 def respond(message, history):
-    # Gradio ChatInterface 传入 history 但我们用 LangChain 自己管
     return chat(message)
 
 
 demo = gr.ChatInterface(
     fn=respond,
-    title="☕ 悠然咖啡 智能客服",
-    description="可以问菜单、价格、营业时间，也可以下单和预约座位！",
-    examples=["你们有什么饮品？", "帮我查一下拿铁还有多少", "我要点 2 杯摩卡", "预约明天下午 3 点 2 人座位"],
+    title="☕ Youran Coffee - AI Customer Service",
+    description="Ask about our menu, prices, hours — or place an order and reserve a seat!",
+    examples=["What drinks do you have?", "Check latte inventory", "Order 2 mochas", "Reserve a table for 2 tomorrow at 3pm"],
 )
 
 if __name__ == "__main__":
