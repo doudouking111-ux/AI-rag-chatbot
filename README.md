@@ -1,6 +1,6 @@
 # AI Demo Projects
 
-Three demo projects showcasing practical LLM applications: RAG document Q&A, AI customer service chatbot, and AI-powered workflow automation.
+Four demo projects showcasing practical LLM applications: RAG document Q&A, AI customer service chatbot, AI-powered workflow automation, and structured document extraction.
 
 ## Project 1: RAG Document Q&A
 
@@ -128,6 +128,51 @@ streamlit run app.py
 
 ---
 
+## Project 4: AI Document Extractor
+
+Upload invoice or resume PDFs — AI automatically classifies the document type and extracts structured data using Pydantic schemas. Supports batch processing with CSV export.
+
+### Architecture
+
+```
+Upload PDF(s) → PyMuPDF text extraction
+              → LLM classifies document type (invoice / resume)
+              → LLM + Pydantic Structured Output → typed objects
+              → Streamlit table display + CSV download
+```
+
+### Features
+
+- Auto document type classification (invoice vs resume)
+- Pydantic-based structured output (type-safe, no manual JSON parsing)
+- Batch upload and processing
+- Invoice extraction: number, vendor, date, line items, tax, totals
+- Resume extraction: name, contact, skills, experience, education
+- CSV export for each document type
+- Expandable detail views per document
+
+### Files
+
+| File | Description |
+|------|-------------|
+| `doc_extract/app.py` | Streamlit UI — batch upload, tables, CSV export |
+| `doc_extract/extractor.py` | LLM extraction with `with_structured_output()` |
+| `doc_extract/schemas.py` | Pydantic models: `InvoiceData`, `ResumeData` |
+| `doc_extract/parser.py` | PDF text extraction |
+| `doc_extract/config.py` | Environment variable loader |
+| `doc_extract/samples/` | Sample invoice and resume PDFs |
+
+### Usage
+
+```bash
+cd doc_extract
+pip install -r requirements.txt
+# Edit .env with your OpenAI API key
+streamlit run app.py
+```
+
+---
+
 ## Configuration
 
 All projects read from `.env`:
@@ -143,3 +188,4 @@ OPENAI_BASE_URL=https://api.openai.com/v1
 - Project 1: Streamlit, FAISS, PyMuPDF, python-docx
 - Project 2: Gradio, LangChain Tool Calling
 - Project 3: Streamlit, PyMuPDF, LangChain structured extraction
+- Project 4: Streamlit, PyMuPDF, Pydantic Structured Output
